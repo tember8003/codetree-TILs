@@ -2,7 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -15,36 +15,32 @@ public class Main {
 		int n = Integer.parseInt(br.readLine());
 		HashMap<String, Integer> maps = new HashMap<String, Integer>();
 		
-		for(int i=0; i<n; i++) {
+		for(int i=1; i<=n; i++) {
 			st = new StringTokenizer(br.readLine());
+			String[] name = new String[3];
 			for(int j=0; j<3; j++) {
-				String name = st.nextToken();
-				if(maps.containsKey(name)) {
-					maps.put(name, maps.get(name)+1);
-				}
-				else {
-					maps.put(name, 1);
-				}
+				name[j]= st.nextToken();
 			}
-		}
-		List<String> KeySet = new ArrayList<String>(maps.keySet());
-		KeySet.sort(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return maps.get(o2).compareTo(maps.get(o1));
-            }
-        });
-		int cnt=0;
-		int ans=0;
-		for(String key : KeySet) {
-			if(cnt==3) {
-				break;
+			Arrays.sort(name);
+			String temp = "";
+			for(int j=0; j<3; j++) {
+				temp+=name[j];
 			}
-			cnt++;
-			ans += maps.get(key);
+			if(maps.containsKey(temp)) {
+				maps.put(temp, maps.get(temp)+1);
+			}
+			else {
+				maps.put(temp, 1);
+			}
 		}
 		
-		System.out.println((int)(ans/3));
+		int ans=0;
+		List<String> keySet = new ArrayList<>(maps.keySet());
+		for(String key : keySet) {
+			ans = Math.max(ans, maps.get(key));
+		}
+		
+		System.out.println(ans);
 
 	}
 
