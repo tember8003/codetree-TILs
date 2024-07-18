@@ -22,7 +22,7 @@ public class Main {
 			map[x][y]=1;
 		}
 		
-		dfs(1,1);
+		dfs(0,0);
 		System.out.println(ans);
 
 	}
