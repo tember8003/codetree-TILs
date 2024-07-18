@@ -20,48 +20,25 @@ public class Main {
 			int x=Integer.parseInt(st.nextToken());
 			int y=Integer.parseInt(st.nextToken());
 			map[x][y]=1;
-			
 		}
-		for(int i=1; i<=100; i++) {
-			for(int j=1; j<=100; j++) {
-				if(map[i][j]!=1 && check(i,j)) {
-					map[i][j]=2;
-				}
-			}
-		}
-		for(int i=1;i<=100; i++) {
-			for(int j=1; j<=100; j++) {
-				if(!visited[i][j] && map[i][j]==1) {
-					dfs(i,j);
-				}
-			}
-		}
+		
+		dfs(1,1);
 		System.out.println(ans);
 
 	}
-	public static boolean check(int x,int y) {
-		int count=0;
-		count+=map[x+1][y]+map[x][y+1]+map[x-1][y]+map[x][y-1];
-		if(count==4) {
-			return true;
-		}
-		return false;
-	}
+	
 	public static void dfs(int x,int y) {
+		if(map[x][y]==1) {
+			ans++;
+			return;
+		}
+		
+		if(visited[x][y]) {
+			return;
+		}
+		
 		visited[x][y]=true;
-		if(map[x+1][y]==0) {
-			ans++;
-		}
-		if(map[x][y+1]==0) {
-			ans++;
-		}
-		if(map[x-1][y]==0) {
-			ans++;
-		}
-		if(map[x][y-1]==0) {
-			ans++;
-		}
-		//System.out.println(x +" "+y+"좌표까지 ans값은 "+ans);
+		
 		for(int i=0; i<4; i++) {
 			int nx = x+dx[i];
 			int ny = y+dy[i];
@@ -69,10 +46,6 @@ public class Main {
 			if(nx >100 || nx<1 || ny>100 || ny<1) {
 				continue;
 			}
-			if(visited[nx][ny] || map[nx][ny]!=1) {
-				continue;
-			}
-			visited[nx][ny]=true;
 			dfs(nx,ny);
 		}
 	}
