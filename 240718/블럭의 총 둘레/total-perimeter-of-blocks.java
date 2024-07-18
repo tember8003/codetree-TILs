@@ -43,7 +43,7 @@ public class Main {
 			int nx = x+dx[i];
 			int ny = y+dy[i];
 			
-			if(nx >100 || nx<1 || ny>100 || ny<1) {
+			if(nx >101 || nx<0 || ny>101 || ny<0) {
 				continue;
 			}
 			dfs(nx,ny);
