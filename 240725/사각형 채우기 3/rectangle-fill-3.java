@@ -11,7 +11,12 @@ public class Main {
 		if(n<=1) {
 			System.out.println(dp[n]);
 		}
+		else if(n==2) {
+			dp[2]=7;
+			System.out.println(dp[n]);
+		}
 		else {
+			dp[2]=7;
 			for(int i=3; i<=n; i++) {
 				dp[i]=(2*dp[i-1]+3*dp[i-2])%1000000007;
 				for(int j=i-3; j>=0; j--) {
