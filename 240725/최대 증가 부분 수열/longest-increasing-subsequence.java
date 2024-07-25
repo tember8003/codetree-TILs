@@ -25,10 +25,16 @@ public class Main {
 			for(int j=0; j<i; j++) {
 				if(arr[j]<arr[i]) {
 					dp[i] = Math.max(dp[i], dp[j]+1);
-					ans = Math.max(ans, dp[i]);
 				}
+				ans = Math.max(ans, dp[i]);
 			}
 		}
-		System.out.println(ans);
+		if(ans==0) {
+			System.out.println(1);
+		}
+		else {
+			System.out.println(ans);
+		}
 	}
+
 }
