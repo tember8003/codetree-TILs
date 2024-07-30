@@ -1,34 +1,39 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
 public class Main {
-	//백트래킹 문제
+	//dp문제
 	static int n;
-	static int ans=0;
-	static int[] plus = {1,2,5};
-	
+	static int MOD = 10007;
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		StringTokenizer st = new StringTokenizer(br.readLine());
+		StringTokenizer st= new StringTokenizer(br.readLine());
 		n = Integer.parseInt(st.nextToken());
 		
-		repeat(0);
-		System.out.println(ans);
-
-	}
-	public static void repeat(int sum) {
-		if(sum>n) {
-			return;
+		int[] arr = {1,2,5};
+		int[] dp = new int[n+1];
+		if(n>=5) {
+			dp[1]=1; dp[2]=1; dp[5]=1;
 		}
-		else if(sum==n) {
-			ans++;
-			return;
+		else if(n<5 && n>1) {
+			dp[1]=1; dp[2]=1;
 		}
-		for(int i=0; i<3; i++) {
-			repeat(sum+plus[i]);
+		else {
+			dp[1]=1;
 		}
+		
+		for(int i=1; i<=n; i++) {
+			for(int j=0; j<3; j++) {
+				if(i>=arr[j]) {
+					dp[i]+=(dp[i-arr[j]])%MOD;
+				}
+			}
+		}
+		System.out.println(dp[n]%MOD);
 	}
 }
