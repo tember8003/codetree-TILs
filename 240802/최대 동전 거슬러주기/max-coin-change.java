@@ -23,7 +23,7 @@ public class Main {
 			arr[i]=Integer.parseInt(st.nextToken());
 		}
 		
-		for(int i=1; i<=m; i++) {
+		for(int i=0; i<=m; i++) {
 			for(int j=1; j<=n; j++) {
 				if(i+arr[j]<=m) {
 					dp[i+arr[j]]=Math.max(dp[i+arr[j]], dp[i]+1);
