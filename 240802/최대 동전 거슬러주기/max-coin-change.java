@@ -22,19 +22,25 @@ public class Main {
 		for(int i=1; i<=n; i++) {
 			arr[i]=Integer.parseInt(st.nextToken());
 		}
-		
+		for(int i=0; i<=m; i++) {
+			dp[i]=Integer.MIN_VALUE;
+		}
+		dp[0]=0;
 		for(int i=0; i<=m; i++) {
 			for(int j=1; j<=n; j++) {
 				if(i+arr[j]<=m) {
-					dp[i+arr[j]]=Math.max(dp[i+arr[j]], dp[i]+1);
+					if(dp[i]!=Integer.MIN_VALUE) {
+						dp[i+arr[j]]=Math.max(dp[i+arr[j]], dp[i]+1);
+					}
 				}
 			}
 		}
-        if(dp[m]==0){
+        if(dp[m]==Integer.MIN_VALUE){
             System.out.println(-1);
         }
         else{
             System.out.println(dp[m]);
         }
+		
 	}
 }
