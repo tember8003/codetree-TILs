@@ -30,6 +30,11 @@ public class Main {
 				}
 			}
 		}
-		System.out.println(dp[m]);
+        if(dp[m]==0){
+            System.out.println(-1);
+        }
+        else{
+            System.out.println(dp[m]);
+        }
 	}
 }
