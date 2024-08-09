@@ -23,9 +23,9 @@ public class Main {
 		
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		map = new int[n+1][n+1];
-		dist = new int[n+1][n+1];
-		visited = new boolean[n+1][n+1];
+		map = new int[n+3][m+3];
+		dist = new int[n+3][m+3];
+		visited = new boolean[n+3][m+3];
 		
 		for(int i=1; i<=n; i++) {
 			st = new StringTokenizer(br.readLine());
