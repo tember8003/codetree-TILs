@@ -34,7 +34,12 @@ public class Main {
 			}
 		}
 		bfs(1,1);
-		System.out.println(dist[n][m]); //최단거리 출력
+        if(dist[n][m]==0){
+            System.out.println(-1);
+        }
+        else{
+		    System.out.println(dist[n][m]); //최단거리 출력
+        }
 	}
 	
 	public static void bfs(int x,int y) {
