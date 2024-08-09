@@ -5,17 +5,16 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
+
 public class Main {
     //BFS 문제
 	static int n;
 	static int m;
 	static int[][] map; //배열
-	static int[][] dist; //거리
-	static boolean[][] visited; //방문여부 확인
+	static int[][] visited; //방문여부 확인 + 거리 계산
 	static int[] dy = {1,-1,0,0}; //동서남북 이동
 	static int[] dx = {0,0,1,-1}; //동서남북 이동
 	static Queue<int[]> queue = new LinkedList<>(); //bfs용
-	static int ans=0;
 	
 	public static void main(String[] args) throws IOException{
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -23,31 +22,30 @@ public class Main {
 		
 		n = Integer.parseInt(st.nextToken());
 		m = Integer.parseInt(st.nextToken());
-		map = new int[n+3][m+3];
-		dist = new int[n+3][m+3];
-		visited = new boolean[n+3][m+3];
+		map = new int[n][m];
+		visited = new int[n][m];
 		
-		for(int i=1; i<=n; i++) {
+		for(int i=0; i<n; i++) {
 			st = new StringTokenizer(br.readLine());
-			for(int j=1; j<=m; j++) {
+			for(int j=0; j<m; j++) {
 				map[i][j]=Integer.parseInt(st.nextToken());
 			}
 		}
-		bfs(1,1);
-        if(dist[n][m]==0){
-            System.out.println(-1);
-        }
-        else{
-		    System.out.println(dist[n][m]); //최단거리 출력
-        }
+		bfs(0,0);
+		if(visited[n-1][m-1]==0) {
+			System.out.println(-1);
+		}
+		else {
+			System.out.println(visited[n-1][m-1]);
+		}
 	}
 	
 	public static void bfs(int x,int y) {
-		visited[x][y]=true;
 		queue.add(new int[] {x,y}); //초기 시작 위치 저장
+		visited[x][y]=0;
 		
 		while(!queue.isEmpty()) {
-			int[] temp = queue.poll();
+			int[] temp =queue.poll();
 			int tx = temp[0];
 			int ty = temp[1];
 			
@@ -55,18 +53,18 @@ public class Main {
 				int nx = tx+dx[i];
 				int ny = ty+dy[i];
 				
-				if(nx>n||nx<1||ny>n||ny<1) { //범위 벗어나면 X
-					continue;
+				if(check(nx,ny)) {
+					visited[nx][ny]=visited[tx][ty]+1;
+					queue.add(new int[] {nx,ny}); //동서남북 새로운 위치 저장
 				}
-				if(visited[nx][ny] || map[nx][ny]==0) { //이미 방문했거나 0이라면 X
-					continue;
-				}
-				
-				dist[nx][ny] = dist[tx][ty]+1; //움직인 거리 설정
-				queue.add(new int[] {nx,ny}); //동서남북 새로운 위치 저장
-				visited[nx][ny]=true;
 			}
 		}
+	}
+	public static boolean check(int x,int y) {//이미 방문했거나 0이 아니라면 X
+		return isRange(x,y) && map[x][y]==1 && visited[x][y]==0;
+	}
+	public static boolean isRange(int x,int y) {//범위 벗어나면 X
+		return (0<=x && x<n && 0<=y && y<m);
 	}
 
 }
