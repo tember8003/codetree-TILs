@@ -21,7 +21,11 @@ public class Main {
 		for(int i=2; i<=n; i++) {
 			dp[i]=Math.max(dp[i-1]+arr[i], arr[i]);
 		}
-		System.out.println(dp[n]);
 		
+		int ans = Integer.MIN_VALUE;
+		for(int i=1; i<=n; i++) {
+			ans = Math.max(dp[i], ans);
+		}
+		System.out.println(ans);
 	}
 }
