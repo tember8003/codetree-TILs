@@ -29,6 +29,7 @@ public class Main {
 				if(max_num==arr[j]) {
 					arr[j]--;
 					pq.add(arr[j]);
+                    break;
 				}
 			}
 		}
