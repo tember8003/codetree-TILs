@@ -5,7 +5,6 @@ import java.util.Collections;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
 
-
 public class Main {
 	//우선순위 큐 내림차순 문제
 	static PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
@@ -31,6 +30,9 @@ public class Main {
 			int one = pq.poll();
 			int two = pq.poll();
 			
+			if(one-two==0) {
+				continue;
+			}
 			pq.add(one - two);	
 		}
 		if(pq.isEmpty()) {
