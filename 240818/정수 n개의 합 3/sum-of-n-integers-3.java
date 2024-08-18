@@ -12,7 +12,6 @@ public class Main {
 		
 		int n = Integer.parseInt(st.nextToken());
 		int k = Integer.parseInt(st.nextToken());
-		k--;
 		
 		int[][] arr = new int[n+1][n+1];
 		int[][] sum = new int[n+1][n+1];
@@ -31,9 +30,9 @@ public class Main {
 		}
 		
 		int max_num = 0;
-		for(int i=1; i<=n-k; i++) {
-			for(int j=1; j<=n-k; j++) {
-				max_num = Math.max(max_num, (sum[i+k][j+k] - sum[i-1][j+k] - sum[i+k][j-1] +sum[i-1][j-1]));
+		for(int i=1; i<=n-k+1; i++) {
+			for(int j=1; j<=n-k+1; j++) {
+				max_num = Math.max(max_num, (sum[i+k-1][j+k-1] - sum[i-1][j+k-1] - sum[i+k-1][j-1] +sum[i-1][j-1]));
 			}
 		}
 		
