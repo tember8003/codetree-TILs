@@ -13,8 +13,8 @@ public class Main {
 		int N = Integer.parseInt(st.nextToken());
 		int Q = Integer.parseInt(st.nextToken());
 		
-		int[] arr = new int[1000001];
-		int[] sum = new int[1000001];
+		int[] arr = new int[1000003];
+		int[] sum = new int[1000003];
 		st = new StringTokenizer(br.readLine());
 		for(int i=0; i<N; i++) {
 			int num = Integer.parseInt(st.nextToken());
@@ -30,9 +30,14 @@ public class Main {
 			int a = Integer.parseInt(st.nextToken());
 			int b = Integer.parseInt(st.nextToken());
 			
-			sb.append((sum[b] - sum[a-1])+"\n");
+			if(a==0) {
+				sb.append(sum[b]+"\n");
+			}
+			else {
+				sb.append((sum[b] - sum[a-1])+"\n");
+			}
 		}
 		
-		System.out.println(sb.toString());
+		System.out.println(sb.toString());	
 	}
 }
