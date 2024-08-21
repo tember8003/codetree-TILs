@@ -16,6 +16,7 @@ public class Main {
 		
 		for(int i=0; i<n; i++) {
 			String color = br.readLine();
+			
 			if(map.containsKey(color)) {
 				map.put(color,map.get(color)+1);
 			}
@@ -24,11 +25,10 @@ public class Main {
 			}
 		}
 		
-		int size = n;
 		Iterator<Entry<String,Integer>> it = map.entrySet().iterator();
 		while(it.hasNext()) {
 			Entry<String,Integer> entry = it.next();
-			double val =(double)((100*entry.getValue() / size));
+			double val =((double)(100*entry.getValue()) / n);
 			System.out.print(entry.getKey()+" ");
 			System.out.printf("%.4f",val);
 			System.out.println();
