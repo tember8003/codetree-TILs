@@ -28,11 +28,10 @@ public class Main {
 		Iterator<Entry<String,Integer>> it = map.entrySet().iterator();
 		while(it.hasNext()) {
 			Entry<String,Integer> entry = it.next();
-			double val =((100*entry.getValue() / size));
+			double val =(double)((100*entry.getValue() / size));
 			System.out.print(entry.getKey()+" ");
 			System.out.printf("%.4f",val);
 			System.out.println();
 		}
-		
 	}
 }
