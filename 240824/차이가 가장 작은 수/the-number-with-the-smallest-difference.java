@@ -35,7 +35,11 @@ public class Main {
 				right--;
 			}
 		}
-		
-		System.out.println(ans);
+		if(ans == MAX_NUM) {
+			System.out.println(-1);
+		}
+		else {
+			System.out.println(ans);
+		}
 	}
 }
