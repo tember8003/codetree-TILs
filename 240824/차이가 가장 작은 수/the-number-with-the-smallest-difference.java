@@ -23,18 +23,23 @@ public class Main {
 		Arrays.sort(arr);
 		
 		int left = 0;
-		int right = n-1;
+		int right = 1;
 		
 		int ans = MAX_NUM;
-		while(left < right) {
+		while(right < n) {
 			if(arr[right] - arr[left] < m) {
-				left++;
+				right++;
 			}
 			else {
-				ans = Math.min(ans, arr[right]-arr[left]);
-				right--;
+				ans = Math.min(ans, (arr[right]-arr[left]));
+				left++;
+			}
+			
+			if(left==right) {
+				right++;
 			}
 		}
+		
 		if(ans == MAX_NUM) {
 			System.out.println(-1);
 		}
