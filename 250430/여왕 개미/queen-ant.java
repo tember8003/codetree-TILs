@@ -50,46 +50,41 @@ public class Main {
 
 	}
 	public static int minRoad(int num) {
-		if(num==1) {
-			return gaemi.get(gaemi.size()-1) - gaemi.get(1); 
-		}
-		else {
-			int minNum = 0;
-			int lowerNum =0;
-			int upperNum =1000000000;
-			int midNum;
+		int minNum = 0;
+		int lowerNum =0;
+		int upperNum =1000000000;
+		int midNum;
+		
+		
+		while(lowerNum <= upperNum) {
+			midNum = (lowerNum + upperNum)/2;
 			
+			int numTemp=0;
 			
-			while(lowerNum <= upperNum) {
-				midNum = (lowerNum + upperNum)/2;
-				
-				int numTemp=0;
-				
-				int last=-1000000001;
-				
-				for(int i=1; i<gaemi.size(); i++) {
-					if(gaemi_broken.get(i)) {
-						continue;
-					}
-					
-					int current = gaemi.get(i);
-					
-					if(current - last >midNum) {
-						numTemp++;
-						last = current;
-					}
+			int last=-1000000001;
+			
+			for(int i=1; i<gaemi.size(); i++) {
+				if(gaemi_broken.get(i)) {
+					continue;
 				}
 				
-				if(numTemp <= num) {
-					minNum = midNum;
-					upperNum = midNum - 1;
-				}
-				else {
-					lowerNum = midNum + 1;
+				int current = gaemi.get(i);
+				
+				if(current - last >midNum) {
+					numTemp++;
+					last = current;
 				}
 			}
-			return minNum;
+			
+			if(numTemp <= num) {
+				minNum = midNum;
+				upperNum = midNum - 1;
+			}
+			else {
+				lowerNum = midNum + 1;
+			}
 		}
+		return minNum;
 	}
 
 }
